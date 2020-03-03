@@ -1,4 +1,4 @@
-package com.raj.company;
+package com.raj.company.domain;
 
 import lombok.Data;
 import org.hibernate.procedure.spi.ParameterRegistrationImplementor;

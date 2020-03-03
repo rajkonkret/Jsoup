@@ -1,5 +1,7 @@
-package com.raj.company;
+package com.raj.company.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,15 +26,19 @@ public class Employee {
     @Column(name = "SAL")
     private Double salary;
 
+    @JsonProperty("stanowisko")
     @Column(name = "JOB")
     private String job;
 
+    @JsonIgnore
     @Column(name = "COMM")
     private Double commision;
 
     @Column(name = "HIREDATE")
     private LocalDate hiredate;
 
-
+    @JoinColumn(name = "DEPTNO")
+    @ManyToOne
+    private Department department;
 
 }

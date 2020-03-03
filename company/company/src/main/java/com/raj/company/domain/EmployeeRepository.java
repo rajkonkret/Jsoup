@@ -1,5 +1,6 @@
-package com.raj.company;
+package com.raj.company.domain;
 
+import com.raj.company.domain.Employee;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

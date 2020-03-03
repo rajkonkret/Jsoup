@@ -1,5 +1,7 @@
-package com.raj.company;
+package com.raj.company.api;
 
+import com.raj.company.domain.Employee;
+import com.raj.company.domain.EmployeeRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +21,8 @@ public class EmployeeController {
 
     @GetMapping("employees")
     public Iterable<Employee> index() {
-        //return employeeRepository.findAll();
-        return employeeRepository.findEmployeesByJob("MANAGER");
+        return employeeRepository.findAll();
+        //return employeeRepository.findEmployeesByJob("MANAGER");
     }
 
     @GetMapping("job")
