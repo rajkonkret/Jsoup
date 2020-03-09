@@ -15,6 +15,7 @@ public class Run {
         // String link = "https://www.olx.pl/motoryzacja/";
         String link = "https://www.olx.pl/moda/";
         Integer pages = 0;
+        List<Offer> offersList = new LinkedList<Offer>();
 
         try {
             Document documentPage = Jsoup.connect(link).get();
@@ -22,7 +23,7 @@ public class Run {
                     .getElementsByAttributeValueContaining("data-cy", "page-link-last");
             //System.out.println("pages");
             //ostatnia strona
-            System.out.println(elements1.text());
+            //System.out.println(elements1.text());
             pages = Integer.valueOf(elements1.text());
             // System.out.println(documentPage);
         } catch (IOException ex) {
@@ -35,24 +36,35 @@ public class Run {
         for (int i = 1; i <= 1; i++) {
             Document document =
                     Jsoup.connect(link + "?page=" + i).get();
-            elements = document.getElementsByClass("price");
+            //elements = document.getElementsByClass("price");
             elements2 = document.getElementsByClass("link linkWithHash detailsLink");
-            System.out.println(elements.size());
-            System.out.println(elements2.size());
-            //allPagesElements.add(elements);
-            elements.forEach(s -> allPagesElements.add(s));
-            //allNameOfOffer.add(elements2.attr("title"));
-            //System.out.println(elements2);
-            elements2.forEach(s -> allNameOfOffer.add(s));
-            System.out.println(elements2);
+            //   System.out.println(elements.size());
+            //   System.out.println(elements2.size());
+//            System.out.println("LINK DO OGŁOSZENIA" + elements2.get(1).attr("href"));
+//            System.out.println("LINK DO OGŁOSZENIA" + elements2.get(1).attr("title"));
+            System.out.println("Elementy = " + elements2.size());
+            for (Element elementsIn : elements2) {
 
+
+                //Offer offerToAdd = new Offer(elements2.get(1).attr("title"), elements2.get(1).attr("href"));
+                Offer offerToAdd = new Offer(elementsIn.attr("title"), elementsIn.attr("href"));
+                offersList.add(offerToAdd);
+//                System.out.println(offerToAdd);
+//                offerToAdd.givePrice();
+                //allPagesElements.add(elements);
+                // elements.forEach(s -> allPagesElements.add(s));
+                //allNameOfOffer.add(elements2.attr("title"));
+                //System.out.println(elements2);
+                //elements2.forEach(s -> allNameOfOffer.add(s));
+                //  System.out.println(elements2);
+            }
 
         }
-        List<String> listOffers = Arrays.stream(elements.text()
-                .replace(",", ".")
-                .split("zł"))
-                //.map(s -> s.replaceAll("\\D", ""))
-                .collect(Collectors.toList());
+//        List<String> listOffers = Arrays.stream(elements.text()
+//                .replace(",", ".")
+//                .split("zł"))
+//                //.map(s -> s.replaceAll("\\D", ""))
+//                .collect(Collectors.toList());
 
 
         //System.out.println(listOffers.get(0));
@@ -61,21 +73,29 @@ public class Run {
 //                .collect(Collectors.toList());
         //System.out.println(Integer.valueOf(listOffers.get(0)));
         //System.out.println(Integer.valueOf(listOffersValue.get(0) * 2));
-        listOffers.forEach(s -> System.out.println(s));
-        allNameOfOffer.forEach(s -> {
+//        listOffers.forEach(s -> System.out.println(s));
+//        allNameOfOffer.forEach(s -> {
+//
+//            System.out.println(s);
+//        });
 
-            System.out.println(s);
+//        int a = 0;
+//        for (Element name : allNameOfOffer) {
+//            a++;
+//            System.out.println(name.attr("title"));
+//            System.out.println(name.attr("href") + " cena: ");
+//            Document documentPage = Jsoup.connect(name.attr("href")).get();
+//            System.out.println(documentPage.getElementsByClass("price-label").text());
+//        }
+
+        offersList.stream().forEach(s -> {
+
+            try {
+                System.out.println(s + "cena: " + s.givePrice());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
-
-        int a = 0;
-        for (Element name : allNameOfOffer) {
-            a++;
-            System.out.println(name.attr("title"));
-            System.out.println(name.attr("href") + " cena: " );
-            Document documentPage = Jsoup.connect(name.attr("href")).get();
-            System.out.println(documentPage.getElementsByClass("price-label").text());
-        }
-
         System.out.println("Ilość stron: " + pages);
 
         // System.out.println("rozmiar elementów");
