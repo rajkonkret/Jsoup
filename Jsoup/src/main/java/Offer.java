@@ -1,6 +1,5 @@
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
 import java.io.IOException;
 
 public class Offer {
@@ -13,13 +12,6 @@ public class Offer {
         this.http = http;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getHttp() {
-        return http;
-    }
 
     @Override
     public String toString() {
@@ -30,6 +22,7 @@ public class Offer {
     }
 
     String givePrice() throws IOException {
+
         try {
             Document document = Jsoup.connect(http).get();
             return "Cena z klasy: " + document.getElementsByClass("price-label").text();
@@ -38,5 +31,13 @@ public class Offer {
         }
 
         return "Brak ceny";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getHttp() {
+        return http;
     }
 }
