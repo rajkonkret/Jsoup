@@ -33,7 +33,7 @@ public class Run {
         Elements elements2;
         List<Element> allPagesElements = new LinkedList<>();
         List<Element> allNameOfOffer = new LinkedList<>();
-        for (int i = 1; i <= 1; i++) {
+        for (int i = 1; i <= 5; i++) {
             Document document =
                     Jsoup.connect(link + "?page=" + i).get();
             //elements = document.getElementsByClass("price");
@@ -42,7 +42,7 @@ public class Run {
             //   System.out.println(elements2.size());
 //            System.out.println("LINK DO OGŁOSZENIA" + elements2.get(1).attr("href"));
 //            System.out.println("LINK DO OGŁOSZENIA" + elements2.get(1).attr("title"));
-            System.out.println("Elementy = " + elements2.size());
+            System.out.println("Elementy = page: "+ i + " " + elements2.size());
             for (Element elementsIn : elements2) {
 
 
@@ -91,7 +91,7 @@ public class Run {
         offersList.stream().forEach(s -> {
 
             try {
-                System.out.println(s + "cena: " + s.givePrice());
+                System.out.println(s + " cena: " + s.givePrice());
             } catch (IOException e) {
                 e.printStackTrace();
             }
