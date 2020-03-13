@@ -18,7 +18,6 @@ public class Offer {
         return "Offer{" +
                 "name='" + name + '\'' +
                 ", http='" + http + '\'' +
-
                 '}';
     }
 
