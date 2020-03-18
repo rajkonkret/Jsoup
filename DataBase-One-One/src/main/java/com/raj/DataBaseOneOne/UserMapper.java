@@ -10,7 +10,7 @@ public class UserMapper {
         userDto.setId(user.getId());
         userDto.setEmail(user.getEmail());
         userDto.setUsername(user.getUsername());
-        userDto.setUserDetailsId(user.getUserDetails().getUser().getId());
+        userDto.setUserDetailsId(user.getUserDetails().getId());
         return userDto;
     }
 }
